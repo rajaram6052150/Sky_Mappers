@@ -102,6 +102,7 @@ export default function ImageUploader() {
               </Select>
             </div>
 
+
             <div className="space-y-2">
               <Label htmlFor="image-upload" className="text-sm font-medium text-gray-300">
                 Upload Image
