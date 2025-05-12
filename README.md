@@ -24,13 +24,13 @@ This system supports **urban planning, land-use analysis**, and **automated mapp
 ## 🖼️ Screenshots
 
 ### 🔘 UI Before Upload
-![Image Upload UI](/mnt/data/37ecc129-6724-435c-934c-2690bdf6d326.png)
+![Image Upload UI](Screenshot 2025-05-12 222709.png)
 
 ### 🧠 Processed Image Output
-![Segmentation Output](/mnt/data/ba759bfe-5282-48f5-a43d-99705417d44e.png)
+![Segmentation Output](Screenshot 2025-05-12 222813.png)
 
 ### 🌍 Sample Input Image (Drone View)
-![Input Aerial Image](/mnt/data/333d57e7-ae19-40a8-9d8a-874bac0cac15.jpg)
+![Input Aerial Image](building_img_81.jpg)
 
 ---
 
