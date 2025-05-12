@@ -1,36 +1,38 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🌐 Sky Mappers
 
-## Getting Started
+**Sky Mappers** is a full-stack geospatial intelligence tool built with **Next.js** (frontend) and **Django** (backend). It empowers users to upload aerial or satellite imagery and perform **semantic segmentation** to identify urban and rural infrastructure features such as:
 
-First, run the development server:
+- 🏢 **Buildings**
+- 🛣️ **Roads**
+- 🌊 **Water Bodies**
+- 🏡 **Rooftop Types** (e.g., RCC, Tiled, Asbestos)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+This system supports **urban planning, land-use analysis**, and **automated mapping** through a streamlined web interface.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## 🧠 Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- 🎯 Upload aerial/drone imagery
+- 🤖 Backend AI model segments feature types
+- 🗂️ Choose from feature categories like road, waterbody, building, rooftops
+- 📊 Visual output with processed masks
+- 🔄 REST API communication between frontend and backend
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🖼️ Screenshots
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 🔘 UI Before Upload
+![Image Upload UI](/mnt/data/37ecc129-6724-435c-934c-2690bdf6d326.png)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 🧠 Processed Image Output
+![Segmentation Output](/mnt/data/ba759bfe-5282-48f5-a43d-99705417d44e.png)
 
-## Deploy on Vercel
+### 🌍 Sample Input Image (Drone View)
+![Input Aerial Image](/mnt/data/333d57e7-ae19-40a8-9d8a-874bac0cac15.jpg)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📁 Project Structure
+
