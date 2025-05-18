@@ -37,7 +37,7 @@ export function LoginForm({ className, ...props }) {
       if (response.ok) {
         localStorage.setItem("token", data.token)
         document.cookie = `token=${data.token}; path=/`
-        window.dispatchEvent(new Event("authChanged")) // 🔄 update Navbar
+        window.dispatchEvent(new Event("authChanged"))
         router.push("/dashboard")
       } else {
         setError(data.non_field_errors?.[0] || "Invalid credentials")
@@ -48,21 +48,26 @@ export function LoginForm({ className, ...props }) {
       setIsLoading(false)
     }
   }
+
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <Card className="overflow-hidden p-0 shadow-2xl bg-gradient-to-br from-[#0a192f] to-[#112240] border-0">
+      <Card className="overflow-hidden p-0 shadow-2xl bg-gradient-to-br from-[#0a192f] to-[#112240] border-0 text-white">
         <CardContent className="grid p-0 md:grid-cols-2">
+          {/* LEFT FORM PANEL */}
           <form className="p-6 md:p-8" onSubmit={handleSubmit}>
             <div className="flex flex-col gap-6">
               <div className="flex flex-col items-center text-center">
-                <h1 className="text-3xl font-bold bg-gradient-to-r from-[#e8ed51] to-[#d8dd41] text-transparent bg-clip-text">Welcome back</h1>
-                <p className="text-gray-300 text-balance mt-2">
+                <h1 className="text-3xl font-bold bg-gradient-to-r from-[#e8ed51] to-[#d8dd41] text-transparent bg-clip-text">
+                  Welcome back
+                </h1>
+                <p className="text-gray-300 mt-2">
                   Login to your Sky Mappers account
                 </p>
               </div>
-              {error && (
-                <p className="text-red-500 text-sm text-center">{error}</p>
-              )}              <div className="grid gap-3">
+
+              {error && <p className="text-red-500 text-sm text-center">{error}</p>}
+
+              <div className="grid gap-3">
                 <Label htmlFor="email" className="text-gray-300">Username</Label>
                 <Input
                   id="email"
@@ -74,6 +79,7 @@ export function LoginForm({ className, ...props }) {
                   className="bg-[#112240]/50 border-[#2a3f63] text-gray-200 placeholder:text-gray-500 focus:border-[#e8ed51] focus:ring-[#e8ed51]/20"
                 />
               </div>
+
               <div className="grid gap-3">
                 <div className="flex items-center">
                   <Label htmlFor="password" className="text-gray-300">Password</Label>
@@ -87,18 +93,22 @@ export function LoginForm({ className, ...props }) {
                 <Input
                   id="password"
                   type="password"
+                  placeholder="Enter your password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
-                  className="bg-[#112240]/50 border-[#2a3f63] text-gray-200 focus:border-[#e8ed51] focus:ring-[#e8ed51]/20"
+                  className="bg-[#112240]/50 border-[#2a3f63] text-gray-200 placeholder:text-gray-500 focus:border-[#e8ed51] focus:ring-[#e8ed51]/20"
                 />
-              </div>              <Button 
-                type="submit" 
-                className="w-full bg-[#e8ed51] hover:bg-[#d8dd41] text-[#0a192f] font-medium" 
+              </div>
+
+              <Button
+                type="submit"
+                className="w-full bg-[#112240] hover:bg-[#172a46] text-[#e8ed51] font-medium border border-[#e8ed51]/20 hover:border-[#e8ed51]/50 transition-colors"
                 disabled={isLoading}
               >
                 {isLoading ? "Logging in..." : "Login"}
               </Button>
+
               <div className="text-center text-sm text-gray-300">
                 Don't have an account?{" "}
                 <span
@@ -110,14 +120,17 @@ export function LoginForm({ className, ...props }) {
               </div>
             </div>
           </form>
-          <div className="relative hidden md:block bg-gradient-to-br from-[#112240] to-[#0a192f]">
-            <div className="absolute inset-0 bg-[url('/globe.svg')] opacity-10"></div>
-            <div className="absolute inset-0 bg-gradient-to-br from-[#e8ed51]/10 to-transparent"></div>
+
+          {/* RIGHT IMAGE PANEL */}
+          <div className="relative hidden md:block bg-[#0a192f]">
+            {/* BACKGROUND IMAGE */}
             <img
-              src="/globe.svg"
-              alt="Authentication"
-              className="absolute inset-0 h-full w-full object-cover p-8 opacity-60"
+              src="/bg.png"
+              alt="Drone Visual"
+              className="absolute inset-0 h-full w-full object-cover opacity-30"
             />
+            {/* GRADIENT OVERLAY */}
+            <div className="absolute inset-0 bg-gradient-to-br from-[#e8ed51]/10 to-transparent" />
           </div>
         </CardContent>
       </Card>

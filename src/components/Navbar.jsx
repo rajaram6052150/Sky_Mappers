@@ -19,10 +19,7 @@ export function Navbar({ className, ...props }) {
       setAuthChecked(true)
     }
 
-    // Initial check
     updateAuth()
-
-    // Listen for auth changes
     window.addEventListener("authChanged", updateAuth)
 
     return () => {
@@ -47,10 +44,9 @@ export function Navbar({ className, ...props }) {
           },
         })
       }
-      // Clear tokens
       localStorage.removeItem("token")
       document.cookie = "token=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT"
-      window.dispatchEvent(new Event("authChanged")) // 🔄 update Navbar
+      window.dispatchEvent(new Event("authChanged"))
       setIsLoggedIn(false)
       router.replace("/")
       router.refresh()
@@ -62,13 +58,13 @@ export function Navbar({ className, ...props }) {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
 
   return (
-    <nav className={cn("bg-background border-b sticky top-0 z-50", className)} {...props}>
+    <nav className={cn("bg-slate-900/90 backdrop-blur-sm border-b border-slate-800 sticky top-0 z-50 shadow-lg", className)} {...props}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex-shrink-0">
             <span
               onClick={() => router.push(isLoggedIn ? "/dashboard" : "/")}
-              className="text-2xl font-bold cursor-pointer text-primary"
+              className="text-2xl font-bold cursor-pointer bg-gradient-to-r from-[#e8ed51] to-[#d8dd41] text-transparent bg-clip-text"
             >
               Sky Mappers
             </span>
@@ -77,11 +73,17 @@ export function Navbar({ className, ...props }) {
           {authChecked && (
             <div className="hidden md:flex items-center space-x-4">
               {isLoggedIn ? (
-                <Button variant="outline" onClick={handleLogout}>
+                <Button
+                  onClick={handleLogout}
+                  className="bg-[#0a192f] text-[#e8ed51] hover:bg-[#112240] transition-colors text-lg"
+                >
                   Logout
                 </Button>
               ) : (
-                <Button variant="outline" onClick={() => router.push("/")}>
+                <Button
+                  onClick={() => router.push("/")}
+                  className="bg-[#0a192f] text-[#e8ed51] hover:bg-[#112240] transition-colors text-lg"
+                >
                   Login
                 </Button>
               )}
@@ -89,7 +91,12 @@ export function Navbar({ className, ...props }) {
           )}
 
           <div className="md:hidden">
-            <Button variant="ghost" size="icon" onClick={toggleMenu}>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleMenu}
+              className="text-[#e8ed51] hover:bg-[#e8ed51]/10"
+            >
               {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </Button>
           </div>
@@ -98,11 +105,17 @@ export function Navbar({ className, ...props }) {
         {isMenuOpen && authChecked && (
           <div className="md:hidden px-2 pt-2 pb-3 space-y-1">
             {isLoggedIn ? (
-              <Button variant="outline" onClick={handleLogout} className="w-full text-left">
+              <Button
+                onClick={handleLogout}
+                className="w-full text-left bg-[#0a192f] text-[#e8ed51] hover:bg-[#112240] text-lg"
+              >
                 Logout
               </Button>
             ) : (
-              <Button variant="outline" onClick={() => router.push("/")} className="w-full text-left">
+              <Button
+                onClick={() => router.push("/")}
+                className="w-full text-left bg-[#0a192f] text-[#e8ed51] hover:bg-[#112240] text-lg"
+              >
                 Login
               </Button>
             )}
