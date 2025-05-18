@@ -1,6 +1,10 @@
 # 🌐 Sky Mappers
 
-**Sky Mappers** is a full-stack geospatial intelligence platform that allows users to upload aerial or satellite imagery and perform **semantic segmentation** to detect key infrastructure and land-use features using AI. The platform is built using:
+**Sky Mappers** is a full-stack geospatial intelligence platform that allows users to upload aerial or satellite imagery and perform **semantic segmentation** to detect key infrastructure and land-use features using AI.
+
+---
+
+## 🛠️ Tech Stack
 
 - 🔧 **Frontend**: [Next.js](https://nextjs.org/) (React)
 - 🔧 **Backend**: [Django](https://www.djangoproject.com/) (Django REST Framework)
@@ -21,38 +25,43 @@ Sky Mappers can segment:
 
 ---
 
-## 🔐 Authentication
+## 🔐 Authentication & User Flow
 
-The application includes:
-
-- 🧾 **User Registration**
-- 🔐 **Login System**
-- 🔓 **Token-based Authentication (JWT or Session-based)**
-- ✅ Protected routes for uploading and processing imagery
+- 🧾 **User Registration** (`/register`)
+- 🔐 **Login** (`/`)
+- 📊 **Protected Dashboard** (`/dashboard`)
+- 🔓 **JWT-based authentication**
+- ✅ Secure access to upload and processing features
 
 ---
 
 ## 📦 Key Features
 
-- 📤 Upload high-resolution drone/satellite images
-- 🧠 AI-based backend segmentation for multiple land features
-- 🧭 Choose the target feature type before processing
-- 📈 View segmented output instantly in the frontend
-- 🔄 REST API integration between frontend & backend
-- 🛡️ Authenticated access to segmentation tools
+- 📤 Upload drone/satellite images
+- 🎯 Choose target feature to segment
+- 🧠 Server-side AI performs semantic segmentation
+- 🖼️ Real-time result display
+- 🔄 REST API integration (Next.js ↔ Django)
+- 🛡️ Protected routes with token verification
 
 ---
 
 ## 🖼️ Screenshots
 
-### 🔘 UI Before Upload
-![Image Upload UI](bf_ip.png)
+### 🔐 Login Page
+![Login Page](1.png)
 
-### 🧠 Processed Image Output
-![Segmentation Output](Af_up.png)
+### 🧾 Register Page
+![Register Page](2.png)
 
-### 🌍 Sample Input Image (Drone View)
-![Input Aerial Image](building_img_81.jpg)
+### 📊 Dashboard – Before Upload
+![Dashboard Before Upload](3.png)
+
+### 🧠 Dashboard – After Image is Uploaded and Processed
+![Dashboard After Upload](4.png)
+
+### 🌍 Sample Input (Aerial Image)
+![Input Image](building_img_81.jpg)
 
 ---
 
@@ -64,21 +73,25 @@ Sky_Mappers/
 │   ├── manage.py
 │   ├── requirements.txt
 │   └── sky_mappers/
-│       ├── __init__.py
-│       ├── settings.py         # CORS, DRF, authentication config
+│       ├── settings.py         # CORS, DRF, auth setup
 │       ├── urls.py
-│       ├── api/                # Django app: image processing APIs
-│       └── users/              # Django app: login & registration
+│       ├── api/                # Segmentation logic
+│       └── users/              # Login & registration
 ├── terraview/
 │   ├── package.json
-│   ├── pages/
-│   │   ├── index.js            # Home / Upload page
-│   │   ├── login.js            # Login component
-│   │   └── register.js         # Register component
-│   ├── components/
-│   │   └── ImagePreview.js
 │   ├── public/
-│   │   └── [static images & favicon]
+│   │   └── bg.png, reg.png     # UI assets
+│   ├── src/
+│   │   ├── app/
+│   │   │   ├── layout.js
+│   │   │   ├── page.jsx        # Login
+│   │   │   ├── register/page.jsx
+│   │   │   └── dashboard/page.jsx
+│   │   └── components/
+│   │       ├── Navbar.jsx
+│   │       ├── login-form.jsx
+│   │       ├── RegisterForm.jsx
+│   │       └── imageUploader.jsx
 │   └── styles/
 │       └── globals.css
 └── README.md
