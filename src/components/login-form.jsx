@@ -8,10 +8,7 @@ import { Label } from "@/components/ui/label"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 
-export function LoginForm({
-  className,
-  ...props
-}) {
+export function LoginForm({ className, ...props }) {
   const router = useRouter()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -30,7 +27,7 @@ export function LoginForm({
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          username: email, // Backend expects 'username' but uses email
+          username: email,
           password,
         }),
       })
@@ -40,7 +37,8 @@ export function LoginForm({
       if (response.ok) {
         localStorage.setItem("token", data.token)
         document.cookie = `token=${data.token}; path=/`
-        window.location.href = '/dashboard'
+        window.dispatchEvent(new Event("authChanged")) // 🔄 update Navbar
+        router.push("/dashboard")
       } else {
         setError(data.non_field_errors?.[0] || "Invalid credentials")
       }
@@ -81,7 +79,7 @@ export function LoginForm({
                 <div className="flex items-center">
                   <Label htmlFor="password">Password</Label>
                   <a
-                    href="/"
+                    href="#"
                     className="ml-auto text-sm underline-offset-2 hover:underline"
                   >
                     Forgot your password?
@@ -112,18 +110,12 @@ export function LoginForm({
           <div className="bg-muted relative hidden md:block">
             <img
               src="/placeholder.svg"
-              alt="Image"
+              alt="Authentication"
               className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
             />
           </div>
         </CardContent>
       </Card>
-      <div
-        className="text-muted-foreground *:[a]:hover:text-primary text-center text-xs text-balance *:[a]:underline *:[a]:underline-offset-4"
-      >
-        By clicking continue, you agree to our <a href="#">Terms of Service</a>{" "}
-        and <a href="#">Privacy Policy</a>.
-      </div>
     </div>
-  );
+  )
 }
