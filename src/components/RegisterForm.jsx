@@ -35,16 +35,18 @@ export function RegisterForm({ className, ...props }) {
       })
 
       console.log('Response status:', response.status)
-      const contentType = response.headers.get("content-type")
-      console.log('Content-Type:', contentType)
-
-      if (response.ok) {
+      if (response.ok || response.status === 201) {
         const data = await response.json()
         console.log('Registration successful:', data)
-        localStorage.setItem("token", data.token)
-        document.cookie = `token=${data.token}; path=/`
-        window.dispatchEvent(new Event("authChanged")) // Update Navbar state
-        router.push("/dashboard")
+        if (data.token) {
+          localStorage.setItem("token", data.token)
+          document.cookie = `token=${data.token}; path=/`
+          window.dispatchEvent(new Event("authChanged"))
+          router.push("/dashboard")
+        } else {
+          console.error('No token in response:', data)
+          setError("Registration successful but no token received")
+        }
       } else {
         const text = await response.text()
         console.log('Error response:', text)
