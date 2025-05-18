@@ -77,10 +77,12 @@ export default function ImageUploader() {
   }
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-transparent p-4 w-[100vh]">
-      <Card className="w-full max-w-md border-0 shadow-xl bg-[#0a192f] text-white">
+    <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-[#0a192f] to-[#112240] p-4 w-[100vh]">
+      <Card className="w-full max-w-md border-0 shadow-2xl bg-[#0a192f]/80 backdrop-blur-sm text-white">
         <CardHeader className="border-b border-[#172a46] pb-4">
-          <CardTitle className="text-2xl font-bold text-center">Image Segmentation</CardTitle>
+          <CardTitle className="text-3xl font-bold text-center bg-gradient-to-r from-[#e8ed51] to-[#d8dd41] text-transparent bg-clip-text">
+            Image Segmentation
+          </CardTitle>
         </CardHeader>
         <CardContent className="pt-6">
           <form onSubmit={handleSubmit} className="space-y-6">
