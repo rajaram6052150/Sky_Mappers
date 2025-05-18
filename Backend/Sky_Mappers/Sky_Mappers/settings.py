@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-$*(4s7evu!!i0=3o#g1gqyf^60vqpveyw)e=+y%k(k51qe*+z(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
@@ -170,5 +170,16 @@ REST_FRAMEWORK = {
 # }
 
 # Add CORS settings
-CORS_ALLOW_ALL_ORIGINS = True  # Only for development! Configure specific origins for production
+CORS_ALLOW_ALL_ORIGINS = True  # Only for development
 CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # React/Next.js frontend
+]
+CORS_ALLOWED_METHODS = [
+    'GET',
+    'POST',
+    'PUT',
+    'PATCH',
+    'DELETE',
+    'OPTIONS'
+]
